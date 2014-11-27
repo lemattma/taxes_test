@@ -69,3 +69,7 @@ The `App#process` method will create an instance of `Cart` and will add the prod
 The `Cart#apply_taxes` method will go through each cart item and will calculate the tax for each product with the method `Tax#calculate_tax`.
 
 Any Tax Class should implement the methods `#get_rules` and `#calculate_tax(product)`
+
+## TODO
+- Optional first line; It's kind of useless for now.
+- If 2 products have the same name and price, it should update the existing one in the cart, not adding a new one
