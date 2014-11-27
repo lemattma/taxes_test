@@ -29,19 +29,17 @@ class Cart
   end
 
   def print_receipt
-    str = ''
-    total_taxes = 0.0
-    total_price = 0.0
+    #init values
+    str, total_taxes, total_price = '', 0.0, 0.0
 
     @cart_lines.each do |line|
       product = line[:product]
       qty     = line[:qty]
 
-      # price = quantity * prod w/taxes
-      tax_cost = round_tax (product.attributes[:price] * product.attributes[:tax] / 100)
+      # tax rounded to the nearest 0.05
+      tax_cost = round_value (product.attributes[:price] * product.attributes[:tax] / 100)
       price = (qty * (product.attributes[:price] + tax_cost))
 
-      
       total_price += price
       total_taxes += tax_cost
 
@@ -50,11 +48,15 @@ class Cart
 
     str += "\nSales Taxes: %.2f\n" % [total_taxes]
     str += "Total: %.2f" % [total_price]
-
-    str
   end
 
-  def round_tax fl
-    (fl * 20).ceil / 20.0
+  def cart_size
+    @cart_lines.size
+  end
+
+  def round_value(number)
+    return false unless number.is_a? Numeric
+
+    (number * 20).ceil / 20.0
   end
 end
