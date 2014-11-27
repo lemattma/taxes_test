@@ -20,5 +20,21 @@ describe Cart do
         expect(resp).to be > 0
       end
     end
-  end  
+  end
+
+  describe "#round_value" do
+    context "invalid input" do
+      it "returns false" do
+        value = cart.round_value 'not numeric'
+        expect(value).to be false
+      end
+    end
+
+    context "valid input" do
+      it "returns new rounded value" do
+        value = cart.round_value 1.44
+        expect(value).to be 1.45
+      end
+    end
+  end
 end
