@@ -3,7 +3,7 @@ require_relative "product.rb"
 require_relative "tax.rb"
 
 class App
-  
+
   # Public: Process the product list input
   #
   # input - List of products
@@ -17,7 +17,8 @@ class App
   # Returns the list of products with taxes incl.
   def process(input)
     
-    #
+    # return error message if there's less than 2 lines in the input
+    # Considering the first one the columns names
     return "Error: invalid input" if input.each_line.count < 2
 
     # explode input in lines removing extra \s
