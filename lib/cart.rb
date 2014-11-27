@@ -1,13 +1,21 @@
 class Cart
 
+  # Private: Initialize some values
+  #          @cart_lines default to empty array
+  #
   def initialize
-    # cart_lines is a collection of lines
-    # line item example
-    # {qty: 3, product: #<Product object>}
-
     @cart_lines = []
   end
 
+  # Public: Add a product to the cart
+  #
+  # data - Hash with quantity and product object
+  #
+  # Example
+  #
+  # add_product({qty: 3, product: #<Product object>})
+  #
+  # Returns false when invlaid quantity otherwise, returns cart_size
   def add_product(data)
     return false unless data[:qty] and data[:qty].to_i > 0
 
@@ -16,6 +24,16 @@ class Cart
     cart_size
   end
 
+  # Public: Apply taxes to cart products
+  #
+  # tax_class - Any tax class depending on local laws. 
+  #             Tax class should implement the methods #get_rules and #calculate_tax(product)
+  #
+  # Example
+  #
+  # apply_taxes(#<Tax object>})
+  #
+  # Returns nil
   def apply_taxes(tax_class)
     @cart_lines.each do |line|
       product = line[:product]
@@ -24,6 +42,9 @@ class Cart
     end
   end
 
+  # Public: Get final receipt
+  #
+  # Returns string with the final receipt including taxes
   def get_receipt
     #init values
     str, total_taxes, total_price = '', 0.0, 0.0
@@ -46,12 +67,28 @@ class Cart
     str += "Total: %.2f" % [total_price]
   end
 
+  # Public: Get cart size
+  #
+  # Returns the cart items quantity
   def cart_size
     @cart_lines.size
   end
 
   private
 
+  # Private: Round UP numbers to the nearest 0.05. We use the formule n*20.ceil / 20
+  #
+  # number - Numeric value
+  #
+  # Examples
+  #
+  # round_value(1.44)
+  # #=> 1.45
+  #
+  # round_value(1.67)
+  # #=> 1.70
+  #
+  # Returns rounded number
   def round_value(number)
     return false unless number.is_a? Numeric
 

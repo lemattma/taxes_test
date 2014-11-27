@@ -3,12 +3,20 @@ require_relative "product.rb"
 require_relative "tax.rb"
 
 class App
+  
+  # Public: Process the product list input
+  #
+  # input - List of products
+  #
+  # Input example
+  #
+  # Quantity, Product, Price, Categories
+  # 1, imported bottle of perfume, 27.99, imported
+  # 1, bottle of perfume, 18.99
+  #
+  # Returns the list of products with taxes incl.
   def process(input)
-    # Input example
-    #
-    # Quantity, Product, Price
-    # 1, imported bottle of perfume, 27.99
-    # 1, bottle of perfume, 18.99
+    
     #
     return "Error: invalid input" if input.each_line.count < 2
 
