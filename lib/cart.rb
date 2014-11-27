@@ -24,7 +24,7 @@ class Cart
     end
   end
 
-  def print_receipt
+  def get_receipt
     #init values
     str, total_taxes, total_price = '', 0.0, 0.0
 
@@ -51,7 +51,7 @@ class Cart
   end
 
   private
-  
+
   def round_value(number)
     return false unless number.is_a? Numeric
 

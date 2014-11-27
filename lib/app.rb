@@ -40,7 +40,7 @@ class App
     tax_class = Tax.new
     cart.apply_taxes tax_class
 
-    cart.print_receipt
+    cart.get_receipt
   end
 end
 
