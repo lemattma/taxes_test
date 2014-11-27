@@ -1,11 +1,9 @@
 class Tax
-  RULES = [
-    {amount: 5, all: ['imported']},
-    {amount: 10, except: ['book','food','medical']}
-  ]
-
   def get_rules
-    RULES
+    [
+      {amount: 5, all: ['imported']},
+      {amount: 10, except: ['book','food','medical']}
+    ]
   end
 
   def calculate_tax(product)
