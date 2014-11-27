@@ -3,7 +3,7 @@ require_relative "product.rb"
 require_relative "tax.rb"
 
 class App
-  def process input
+  def process(input)
     # Input example
     #
     # Quantity, Product, Price

@@ -8,7 +8,7 @@ class Cart
     @cart_lines = []
   end
 
-  def add_product data
+  def add_product(data)
     return false unless data[:qty] and data[:qty].to_i > 0
 
     @cart_lines << data
@@ -16,11 +16,7 @@ class Cart
     cart_size
   end
 
-  def cart_size
-    @cart_lines.size
-  end
-
-  def apply_taxes tax_class
+  def apply_taxes(tax_class)
     @cart_lines.each do |line|
       product = line[:product]
       tax_amount = tax_class.calculate_tax product

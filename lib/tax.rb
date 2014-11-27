@@ -8,7 +8,7 @@ class Tax
     RULES
   end
 
-  def calculate_tax product
+  def calculate_tax(product)
     tax_total = 0
 
     get_rules.each do |rule|
