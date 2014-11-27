@@ -19,7 +19,7 @@ $ ruby taxes.rb < INPUT2
 $ ruby taxes.rb < INPUT3
 ```
 
-# testing
+## Testing
 ```sh
 # for running the specs
 $ rspec
