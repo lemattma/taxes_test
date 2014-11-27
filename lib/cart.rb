@@ -50,6 +50,8 @@ class Cart
     @cart_lines.size
   end
 
+  private
+  
   def round_value(number)
     return false unless number.is_a? Numeric
 

@@ -25,14 +25,14 @@ describe Cart do
   describe "#round_value" do
     context "invalid input" do
       it "returns false" do
-        value = cart.round_value 'not numeric'
+        value = cart.send(:round_value, 'not numeric')
         expect(value).to be false
       end
     end
 
     context "valid input" do
       it "returns new rounded value" do
-        value = cart.round_value 1.44
+        value = cart.send(:round_value, 1.44)
         expect(value).to be 1.45
       end
     end
