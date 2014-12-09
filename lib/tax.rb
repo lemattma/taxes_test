@@ -16,10 +16,9 @@ class Tax
   # Returns the % of calculated tax for the product
   def calculate_tax(product)
     tax_total = 0
+    cats = product.attributes[:categories]
 
     get_rules.each do |rule|
-
-      cats = product.attributes[:categories]
 
       # taxes for all the products
       if rule[:all]
