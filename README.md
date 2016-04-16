@@ -3,8 +3,8 @@ Tax calculator receives an input list of product with their prices and categorie
 
 ## Environment
 - OSx 10.9.5
-- rvm 1.25.33
-- ruby-2.0.0-p353
+- rbenv 0.4.0
+- ruby 2.1.5
 
 ## Instalation
 ```sh
