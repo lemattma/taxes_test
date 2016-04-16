@@ -1,5 +1,4 @@
 class Cart
-
   # Private: Initialize some values
   #          @cart_lines default to empty array
   #
@@ -17,7 +16,7 @@ class Cart
   #
   # Returns false when invlaid quantity otherwise, returns cart_size
   def add_product(data)
-    return false unless data[:qty] and data[:qty].to_i > 0
+    return false unless data[:qty] && data[:qty].to_i > 0
 
     @cart_lines << data
 
@@ -26,7 +25,7 @@ class Cart
 
   # Public: Apply taxes to cart products
   #
-  # tax_class - Any tax class depending on local laws. 
+  # tax_class - Any tax class depending on local laws.
   #             Tax class should implement the methods #get_rules and #calculate_tax(product)
   #
   # Example
@@ -46,15 +45,16 @@ class Cart
   #
   # Returns string with the final receipt including taxes
   def get_receipt
-    #init values
-    str, total_taxes, total_price = '', 0.0, 0.0
+    str = ''
+    total_taxes = 0.0
+    total_price = 0.0
 
     @cart_lines.each do |line|
       product = line[:product]
-      qty     = line[:qty]
+      qty = line[:qty]
 
       # tax rounded to the nearest 0.05
-      tax_cost = round_value (product.attributes[:price] * product.attributes[:tax] / 100)
+      tax_cost = round_value(product.attributes[:price] * product.attributes[:tax] / 100)
       price = (qty * (product.attributes[:price] + tax_cost))
 
       total_price += price
