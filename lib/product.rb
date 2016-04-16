@@ -1,5 +1,4 @@
 class Product
-	
   attr_accessor :attributes
 
   # Private: Initialize some values

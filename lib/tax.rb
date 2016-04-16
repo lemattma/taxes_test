@@ -1,11 +1,10 @@
 class Tax
-
   # Public: Returns hash with rules
   #
   def get_rules
     [
-      {amount: 5, all: ['imported']},
-      {amount: 10, except: ['book','food','medical']}
+      { amount: 5, all: ['imported'] },
+      { amount: 10, except: ['book', 'food', 'medical'] }
     ]
   end
 
@@ -19,7 +18,6 @@ class Tax
     cats = product.attributes[:categories]
 
     get_rules.each do |rule|
-
       # taxes for all the products
       if rule[:all]
         # size of the intersection array > 0

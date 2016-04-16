@@ -1,4 +1,5 @@
-require_relative "lib/app.rb"
+require_relative 'lib/app.rb'
+
 app = App.new
 input = ''
 

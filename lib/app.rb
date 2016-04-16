@@ -1,9 +1,8 @@
-require_relative "cart.rb"
-require_relative "product.rb"
-require_relative "tax.rb"
+require_relative 'cart.rb'
+require_relative 'product.rb'
+require_relative 'tax.rb'
 
 class App
-
   # Public: Process the product list input
   #
   # input - List of products
