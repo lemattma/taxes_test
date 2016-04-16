@@ -5,29 +5,38 @@ class Tax
   #
   # Returns the % of calculated tax for the product
   def calculate_tax(product)
-    tax_total = 0
-    cats = product.attributes[:categories]
-
-    rules.each do |rule|
-      # taxes for all the products
-      if rule[:all]
-        # size of the intersection array > 0
-        all = (rule[:all] & cats).size > 0
-        tax_total += rule[:amount] if all
-      end
-
-      # taxes with exceptions
-      if rule[:except]
-        # size of the intersection array > 0
-        except = (rule[:except] & cats).size > 0
-        tax_total += rule[:amount] unless except
-      end
-    end
-
-    tax_total
+    @tax_total = 0
+    @cats = product.attributes[:categories]
+    process
   end
 
   private
+
+  def process
+    rules.each { |rule| process_rule(rule) }
+    @tax_total
+  end
+
+  def process_rule(rule)
+    [:all, :except].each do |rule_type|
+      next unless rule_categories = rule[rule_type]
+
+      categories_match = (rule_categories & @cats).size > 0
+
+      if should_apply_tax?(rule_type, categories_match)
+        add_tax_amount(rule[:amount])
+      end
+    end
+  end
+
+  def should_apply_tax?(rule_type, categories_match)
+    # if type is :except, we have to reverse the match boolean result
+    rule_type == :except ? !categories_match : categories_match
+  end
+
+  def add_tax_amount(amount)
+    @tax_total += amount
+  end
 
   def rules
     [
