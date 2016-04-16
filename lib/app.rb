@@ -16,20 +16,31 @@ class App
   #
   # Returns the list of products with taxes incl.
   def process(input)
-    
     # return error message if there's less than 2 lines in the input
     # Considering the first one the columns names
     return "Error: invalid input" if input.each_line.count < 2
 
     # explode input in lines removing extra \s
-    lines = input.each_line.map &:strip
+    @lines = input.each_line.map &:strip
     # Remove first line with input fields
-    lines.shift
+    @lines.shift
 
     # initialize the cart
-    cart = Cart.new
+    @cart = Cart.new
 
-    lines.each do |line|
+    process_lines
+
+    # Let's apply taxes
+    tax_class = Tax.new
+    @cart.apply_taxes tax_class
+
+    @cart.get_receipt
+  end
+
+  private
+
+  def process_lines
+    @lines.each do |line|
       # explode line data removing extra \s
       line_array = line.split(',').map &:strip
 
@@ -42,14 +53,7 @@ class App
 
       # add the product to the cart
       product = Product.new data
-      cart.add_product({qty: qty, product: product})
+      @cart.add_product(qty: qty, product: product)
     end
-  
-    # Let's apply taxes
-    tax_class = Tax.new
-    cart.apply_taxes tax_class
-
-    cart.get_receipt
   end
 end
-
