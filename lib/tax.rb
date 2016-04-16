@@ -1,13 +1,4 @@
 class Tax
-  # Public: Returns hash with rules
-  #
-  def get_rules
-    [
-      { amount: 5, all: ['imported'] },
-      { amount: 10, except: ['book', 'food', 'medical'] }
-    ]
-  end
-
   # Public: Calculate tax % for one product
   #
   # product - #<Product object>
@@ -17,7 +8,7 @@ class Tax
     tax_total = 0
     cats = product.attributes[:categories]
 
-    get_rules.each do |rule|
+    rules.each do |rule|
       # taxes for all the products
       if rule[:all]
         # size of the intersection array > 0
@@ -34,5 +25,14 @@ class Tax
     end
 
     tax_total
+  end
+
+  private
+
+  def rules
+    [
+      { amount: 5, all: ['imported'] },
+      { amount: 10, except: ['book', 'food', 'medical'] }
+    ]
   end
 end

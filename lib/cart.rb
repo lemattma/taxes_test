@@ -26,7 +26,7 @@ class Cart
   # Public: Apply taxes to cart products
   #
   # tax_class - Any tax class depending on local laws.
-  #             Tax class should implement the methods #get_rules and #calculate_tax(product)
+  #             Tax class should implement the method and #calculate_tax(product)
   #
   # Example
   #
